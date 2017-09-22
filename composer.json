@@ -1,0 +1,22 @@
+{
+    "name": "max-commerce/shop-search",
+    "description": "Maxcommerce search module",
+    "homepage": "http://maxcommerce.ru/",
+    "type": "project",
+    "minimum-stability": "dev",
+    "repositories": [
+        {
+            "type": "git",
+            "url":  "https://github.com/max-commerce/shop-core.git"
+        }
+    ],
+    "require": {
+        "max-commerce/shop-core": "dev-master",
+        "kartik-v/yii2-widget-typeahead": "*",
+    },
+    "autoload": {
+        "psr-4": {
+            "maxcom\\search\\": ""
+        }
+    }
+}
