@@ -34,8 +34,19 @@ class AjaxController extends Controller
             throw new yii\web\BadRequestHttpException('Bad Request.');
         }
 
+
+        if ($this->category->hasAttribute('title')) {
+            // maxcommerce v.1
+            $titleAttribute = 'title';
+        } elseif ($this->category->hasAttribute('name')) {
+            // maxcommerce v.2
+            $titleAttribute = 'name';
+        } else {
+            throw new ErrorException("Can't to allocate category title attribute");
+        }
+
         $categories = $this->category->find()
-                ->where(['like', 'title', $q])
+                ->where(['like', $titleAttribute, $q])
                 ->limit(10)
                 ->all();
 
@@ -48,8 +59,18 @@ class AjaxController extends Controller
           ]
         ]);
 
+        if ($this->product->hasAttribute('title')) {
+            // maxcommerce v.1
+            $titleAttribute = 'title';
+        } elseif ($this->product->hasAttribute('name')) {
+            // maxcommerce v.2
+            $titleAttribute = 'name';
+        } else {
+            throw new ErrorException("Can't to allocate product title attribute");
+        }
+
         $products = $this->product->find()
-                ->where(['like', 'title', $q])
+                ->where(['like', $titleAttribute, $q])
                 ->limit(20 - count($resultCategories))
                 ->all();
 
